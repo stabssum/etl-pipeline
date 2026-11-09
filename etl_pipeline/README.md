@@ -17,6 +17,16 @@ In this project, raw sales transaction data is processed and structured into a D
 - **Analytics:** Executed analytical SQL queries (`JOIN`, `GROUP BY`, `ORDER BY`) to extract revenue performance across different cities.
 
 ---
+```mermaid
+graph TD
+    Raw[raw_sales Table / CSV Data] --> DataWarehouse[SQLite Warehouse - ecommerce_warehouse.db]
+
+    subgraph Data_Warehouse_Schema
+        DataWarehouse --> DimCust[dim_customers]
+        DataWarehouse --> DimProd[dim_products]
+        DataWarehouse --> FactSales[fact_sales]
+    end
+```
 
 ## 🏗️ Data Warehouse Schema (Star Schema)
 
@@ -26,15 +36,7 @@ In this project, raw sales transaction data is processed and structured into a D
 
 ---
 
-```mermaid
-graph TD
-    Raw[raw_sales Table / CSV Data] --> DataWarehouse[(SQLite Warehouse (ecommerce_warehouse.db)]
-    
-    subgraph Data_Warehouse_Schema
-        DataWarehouse --> DimCust[dim_customers]
-        DataWarehouse --> DimProd[dim_products]
-        DataWarehouse --> FactSales[fact_sales]
-    end
+
     FactSales --> Analytics[SQL Aggregation & Business Insights]
     DimCust --> Analytics
 
